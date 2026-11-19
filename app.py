@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    visitor_ip = request.remote_addr
+    visitor_ip = request.headers.get("CF-Connecting-IP") or request.remote_addr
     visit_time = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
 
     print("Visitor IP:", visitor_ip)
